@@ -11,7 +11,7 @@ namespace ConsoleApp1
         public static void Main()
         {
             var Press = new OnKey();
-            Press.OnKeyPressed += (sender, buttonkey) => Console.WriteLine($"Вы нажали на {buttonkey}");
+            Press.OnKeyPressed += (sender, symbol) => Console.WriteLine($"Вы нажали на {symbol}");
             Press.Run();
         }
     }
