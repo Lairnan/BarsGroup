@@ -6,29 +6,28 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Program
+    internal class Program
     {
         public static void Main()
         {
-            var Press = new OnKey();
-            Press.OnKeyPressed += (sender, symbol) => Console.WriteLine($"Вы нажали на {symbol}");
-            Press.Run();
+            var press = new OnKey();
+            press.OnKeyPressed += (sender, symbol) => Console.WriteLine($", вы нажали на {symbol}");
+            press.Run();
         }
     }
+
     internal class OnKey
     {
-        public event EventHandler<char> OnKeyPressed;
+        internal event EventHandler<char> OnKeyPressed;
         public void Run()
         {
-            while (true)
+            while(true)
             {
                 Console.Write("Введите символ: ");
-                var symbol = Console.ReadKey();
-                Console.WriteLine();
-                OnKeyPressed?.Invoke(this, symbol.KeyChar);
-                if (char.ToLower(symbol.KeyChar) == 'c') {
+                var symbol = Console.ReadKey().KeyChar;
+                OnKeyPressed?.Invoke(this,symbol);
+                if (char.ToLower(symbol) == 'c' || char.ToLower(symbol) == 'с')
                     return;
-                }
             }
         }
     }
