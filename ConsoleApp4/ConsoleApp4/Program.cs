@@ -3,7 +3,7 @@
 internal static class Program
 {
     private static readonly List<string> Messages = new List<string>();
-    private static int _;
+    private static int _globalNumber;
     public static void Main(string[] args)
     {
         Console.WriteLine("Приложение запущено.");
@@ -20,7 +20,7 @@ internal static class Program
             } while (arguments[^1] != "/end");
 
             var messageLocal = message;
-            ThreadPool.QueueUserWorkItem(callBack=>
+            ThreadPool.QueueUserWorkItem(_=>
             {
                 if (messageLocal != null) Request(messageLocal, arguments.ToArray());
             });
@@ -38,8 +38,8 @@ internal static class Program
         var requestHandler = new DummyRequestHandler();
         var message = requestHandler.HandleRequest(text, args);
         Console.WriteLine(message != "Я упал, как сам просил"
-            ? $"Сообщение с идентификатором {Messages[_]} получило ответ - {message}"
-            : $"Сообщение с идентификатором {Messages[_]} упало с ошибкой: {message}");
-        _++;
+            ? $"Сообщение с идентификатором {Messages[_globalNumber]} получило ответ - {message}"
+            : $"Сообщение с идентификатором {Messages[_globalNumber]} упало с ошибкой: {message}");
+        _globalNumber++;
     }
 }
