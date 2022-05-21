@@ -22,7 +22,7 @@ internal static class Program
             var messageLocal = message;
             ThreadPool.QueueUserWorkItem(_=>
             {
-                if (messageLocal != null) Request(messageLocal, arguments.ToArray()!,++number);
+                if (messageLocal != null) Request(messageLocal, arguments.ToArray()!,number++);
             });
             var key = Guid.NewGuid().ToString("D");
             Messages.Add(key);
