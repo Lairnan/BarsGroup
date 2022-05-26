@@ -8,9 +8,9 @@ namespace ConsoleApp3
     {
         static void Main()
         {
-            var rnd = new Random();
+            Random rnd = new Random();
             var entity = new List<Entity>();
-            for (var i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var ent = new Entity();
                 if (i == 0)
@@ -21,7 +21,7 @@ namespace ConsoleApp3
                 }
                 else
                 {
-                    int k = rnd.Next(0, 4);
+                    var k = rnd.Next(0, 4);
                     ent.Id = i + 1;
                     ent.ParentId = k;
                     ent.Name = $"Child of {k} entity";
@@ -34,7 +34,7 @@ namespace ConsoleApp3
             foreach (var key in result)
             {
                 Console.Write($"Key = {key.Key}, ");
-                Console.Write($"Value = List [ ");
+                Console.Write("Value = List [");
                 var check = true;
                 foreach (var value in key)
                 {
@@ -47,8 +47,8 @@ namespace ConsoleApp3
                     Console.Write($", Entity[Id = {value.Id}]");
                 }
 
-                Console.Write(" ]");
-                
+                Console.Write("]");
+
                 Console.WriteLine();
             }
         }
