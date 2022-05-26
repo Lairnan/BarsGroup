@@ -8,9 +8,9 @@ namespace ConsoleApp3
     {
         static void Main()
         {
-            var rnd = new Random();
+            Random rnd = new Random();
             var entity = new List<Entity>();
-            for (var i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var ent = new Entity();
                 if (i == 0)
@@ -34,21 +34,14 @@ namespace ConsoleApp3
             foreach (var key in result)
             {
                 Console.Write($"Key = {key.Key}, ");
-                Console.Write($"Value = List [ ");
-                var check = true;
+                Console.Write($"Value = List [");
                 foreach (var value in key)
                 {
-                    if (check)
-                    {
-                        Console.Write($"Entity[Id = {value.Id}]");
-                        check = false;
-                        continue;
-                    }
-                    Console.Write($", Entity[Id = {value.Id}]");
+                    Console.Write($"Entity[Id = {value.Id}], ");
                 }
 
-                Console.Write(" ]");
-                
+                Console.Write("]");
+
                 Console.WriteLine();
             }
         }
