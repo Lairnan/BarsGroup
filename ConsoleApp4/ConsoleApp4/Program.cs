@@ -30,15 +30,22 @@ internal static class Program
             Console.WriteLine("Введите текст запроса для отправки. Для выхода введите /exit");
             message = Console.ReadLine();
         }
+        
+        while (true) if (ThreadPool.ThreadCount == 1) break;
         Console.WriteLine("Приложение завершает работу.");
     }
 
     private static void Request(string text, string[] args,int number)
     {
-        var requestHandler = new DummyRequestHandler();
-        var message = requestHandler.HandleRequest(text, args);
-        Console.WriteLine(message != "Я упал, как сам просил"
-            ? $"Сообщение с идентификатором {Messages[number]} получило ответ - {message}"
-            : $"Сообщение с идентификатором {Messages[number]} упало с ошибкой: {message}");
+        try
+        {
+            var requestHandler = new DummyRequestHandler();
+            var message = requestHandler.HandleRequest(text, args);
+            Console.WriteLine($"\nСообщение с идентификатором {Messages[number]} получило ответ - {message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\nСообщение с идентификатором {Messages[number]} упало с ошибкой: {ex.Message}");
+        }
     }
 }

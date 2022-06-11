@@ -22,20 +22,13 @@ public class DummyRequestHandler : IRequestHandler
     /// <inheritdoc />
     public string HandleRequest(string message, string[] arguments)
     {
-        try
+        // Притворяемся, что делаем что то.
+        Thread.Sleep(10_000);
+        if (message.Contains("упади"))
         {
-            // Притворяемся, что делаем что то.
-            Thread.Sleep(10_000);
-            if (message.Contains("упади"))
-            {
-                throw new Exception("Я упал, как сам просил");
-            }
+            throw new Exception("Я упал, как сам просил");
+        }
 
-            return Guid.NewGuid().ToString("D");
-        }
-        catch (Exception ex)
-        {
-            return ex.Message;
-        }
+        return Guid.NewGuid().ToString("D");
     }
 }
